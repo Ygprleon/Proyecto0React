@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Botón Interactivo</title>
+  <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
+  <style>
+    .boton-estilizado {
+      background-color: #4CAF50;
+      color: blanco;
+      padding: 15px 32px;
+      font-size: 16px;
+      border: ninguno;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .boton-estilizado:hover {
+      background-color: #388E3C;
+    }
+  </style>
+</head>
+<body>
+  <button class="boton-estilizado" id="miBoton">Haz clic aquí</button>
+  <script>
+    // Interactividad con JavaScript
+    document.getElementById('miBoton').addEventListener('click', function() {
+      alert('¡Hola! Has hecho clic en el botón.');
+    });
+  </script>
+</body>
+</html>
