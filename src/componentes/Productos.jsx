@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { Spinner, Alert, Card, Button, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { useCarrito } from '../context/CarritoContext';
 
 export default function Productos({ onAgregar }) {
   const [productos, setProductos] = useState([]);
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState(null);
+  const { agregarAlCarrito } = useCarrito();
 
   
   const API_URL = "https://683db6e0199a0039e9e69a7a.mockapi.io/productos";
+  const productosMostrados = productos.slice(0, 10);
 
   useEffect(() => {
     setCargando(true);
@@ -28,16 +31,20 @@ export default function Productos({ onAgregar }) {
 
   return (
     <Row xs={1} sm={2} md={3} className="g-4">
-      {productos.map(prod => (
+      {productosMostrados.map(prod => (
         <Col key={prod.id}>
           <Card className="h-100">
-            <Card.Img variant="top" src={prod.imagen} alt={prod.nombre} style={{ objectFit: 'cover', height: 180 }} />
+            <Card.Img variant="top" src={prod.Imagen} alt={prod.Nombre} style={{ objectFit: 'cover', height: 180 }} />
             <Card.Body>
-              <Card.Title>{prod.nombre}</Card.Title>
+              <Card.Title>{prod.Nombre}</Card.Title>
               <Card.Text>
-                <strong>{prod.precio} pesos</strong>
+                <strong>{prod.Precio} pesos</strong>
               </Card.Text>
-              <Button variant="primary" onClick={() => onAgregar(prod)}>Agregar al carrito
+              <Card.Text>
+                {prod.Descripción}
+              </Card.Text>
+              <Button variant="primary" onClick={() => agregarAlCarrito(prod)}>
+                Agregar al carrito
               </Button>
               <Button as={Link} to={`/productos/${prod.id}`} variant="secondary" className="ms-2">Ver Detalle
               </Button>
